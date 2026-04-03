@@ -1,28 +1,29 @@
+import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 export function Layout({ cartCount, theme, onToggleTheme, children }) {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link to="/" className="brand-link" aria-label="React Store Lab home">
+        <Link to="/" className="brand-link" aria-label="На главную страницу React Store Lab">
           React<span>Store</span>Lab
         </Link>
 
-        <nav className="main-nav" aria-label="Main navigation">
+        <nav className="main-nav" aria-label="Основная навигация">
           <NavLink to="/" end>
-            Home
+            Главная
           </NavLink>
-          <NavLink to="/catalog">Catalog</NavLink>
-          <NavLink to="/cart">Cart</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/catalog">Каталог</NavLink>
+          <NavLink to="/cart">Корзина</NavLink>
+          <NavLink to="/contact">Контакты</NavLink>
         </nav>
 
         <div className="header-actions">
-          <Link to="/cart" className="cart-pill" aria-label={`Open cart with ${cartCount} items`}>
-            Cart <span>{cartCount}</span>
+          <Link to="/cart" className="cart-pill" aria-label={`Открыть корзину, товаров: ${cartCount}`}>
+            Корзина <span>{cartCount}</span>
           </Link>
           <button type="button" className="theme-button" onClick={onToggleTheme}>
-            {theme === 'dark' ? 'Light' : 'Dark'}
+            {theme === 'dark' ? 'Светлая' : 'Тёмная'}
           </button>
         </div>
       </header>
@@ -30,7 +31,7 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
       <main className="page-wrap">{children}</main>
 
       <footer className="site-footer">
-        Built with React, React Router and Vite. Designed as a portfolio marketplace demo.
+        Собрано на React, React Router и Vite. Это маркетплейс-проект для портфолио.
       </footer>
     </div>
   )
@@ -39,33 +40,33 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
 export function HeroBanner({ totalProducts, cartCount }) {
   return (
     <section className="hero-panel">
-      <p className="eyebrow">Portfolio marketplace concept</p>
+      <p className="eyebrow">Маркетплейс для портфолио</p>
       <h1>React Store Lab</h1>
       <p className="hero-copy">
-        A curated mini marketplace that highlights frontend skills: reusable components,
-        async states, routing, local persistence, adaptive layout and polished UI details.
+        Мини-маркетплейс, который показывает мои frontend-навыки: переиспользуемые
+        компоненты, async-состояния, роутинг, сохранение данных, адаптив и UI-анимации.
       </p>
 
       <div className="hero-actions">
         <Link to="/catalog" className="btn btn-primary">
-          Browse catalog
+          Смотреть каталог
         </Link>
         <Link to="/cart" className="btn btn-secondary">
-          Open cart ({cartCount})
+          Корзина ({cartCount})
         </Link>
       </div>
 
       <dl className="hero-stats">
         <div>
-          <dt>Products</dt>
+          <dt>Товаров</dt>
           <dd>{totalProducts}</dd>
         </div>
         <div>
-          <dt>UI theme</dt>
-          <dd>Dark / Light</dd>
+          <dt>Тема</dt>
+          <dd>Тёмная / светлая</dd>
         </div>
         <div>
-          <dt>Stack</dt>
+          <dt>Стек</dt>
           <dd>React 18</dd>
         </div>
       </dl>
@@ -86,7 +87,7 @@ export function SectionTitle({ eyebrow, title, description }) {
 export function CategoryFilter({ categories, activeCategory, query, onCategoryChange, onQueryChange }) {
   return (
     <div className="catalog-toolbar">
-      <div className="category-row" role="tablist" aria-label="Category filters">
+      <div className="category-row" role="tablist" aria-label="Фильтр по категориям">
         {categories.map((category) => (
           <button
             key={category}
@@ -100,12 +101,12 @@ export function CategoryFilter({ categories, activeCategory, query, onCategoryCh
       </div>
 
       <label className="search-field">
-        <span className="sr-only">Search products</span>
+        <span className="sr-only">Поиск товаров</span>
         <input
           type="search"
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="Search products and skills"
+          placeholder="Поиск по товарам и навыкам"
         />
       </label>
     </div>
@@ -113,8 +114,22 @@ export function CategoryFilter({ categories, activeCategory, query, onCategoryCh
 }
 
 export function ProductCard({ product, onAddToCart }) {
+  const [isAdded, setIsAdded] = useState(false)
+
+  useEffect(() => {
+    if (!isAdded) return undefined
+
+    const timerId = window.setTimeout(() => setIsAdded(false), 900)
+    return () => window.clearTimeout(timerId)
+  }, [isAdded])
+
+  const handleAdd = () => {
+    onAddToCart(product)
+    setIsAdded(true)
+  }
+
   return (
-    <article className="product-card">
+    <article className={`product-card ${isAdded ? 'product-card-added' : ''}`}>
       <div
         className="product-cover"
         style={{
@@ -132,11 +147,18 @@ export function ProductCard({ product, onAddToCart }) {
 
         <div className="product-meta">
           <strong>{product.price.toLocaleString('ru-RU')} ₽</strong>
-          <span>Rating {product.rating}</span>
+          <span>Рейтинг {product.rating}</span>
         </div>
 
-        <button type="button" className="btn btn-primary btn-full" onClick={() => onAddToCart(product)}>
-          Add to cart
+        <button
+          type="button"
+          className={`btn btn-primary btn-full add-cart-btn ${isAdded ? 'add-cart-btn-active' : ''}`}
+          onClick={handleAdd}
+        >
+          <span className="add-cart-text">{isAdded ? 'Добавлено!' : 'В корзину'}</span>
+          <span className="cart-fly-icon" aria-hidden="true">
+            🛒
+          </span>
         </button>
       </div>
     </article>
@@ -149,10 +171,10 @@ export function CartLine({ item, onChangeQuantity, onRemove }) {
       <div className="cart-line-info">
         <p className="product-category">{item.category}</p>
         <h3>{item.title}</h3>
-        <p>{item.price.toLocaleString('ru-RU')} ₽ per item</p>
+        <p>{item.price.toLocaleString('ru-RU')} ₽ за штуку</p>
       </div>
 
-      <div className="quantity-controls" aria-label={`Quantity controls for ${item.title}`}>
+      <div className="quantity-controls" aria-label={`Количество товара ${item.title}`}>
         <button type="button" onClick={() => onChangeQuantity(item.id, item.quantity - 1)}>
           -
         </button>
@@ -167,7 +189,7 @@ export function CartLine({ item, onChangeQuantity, onRemove }) {
       </strong>
 
       <button type="button" className="remove-btn" onClick={() => onRemove(item.id)}>
-        Remove
+        Удалить
       </button>
     </article>
   )

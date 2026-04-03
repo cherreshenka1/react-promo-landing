@@ -32,7 +32,7 @@ export default function App() {
   const [cart, setCart] = useState(loadStoredCart)
   const [catalog, setCatalog] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [activeCategory, setActiveCategory] = useState('All')
+  const [activeCategory, setActiveCategory] = useState('Все товары')
   const [query, setQuery] = useState('')
   const [contactStatus, setContactStatus] = useState('')
   const [orderStatus, setOrderStatus] = useState('')
@@ -67,7 +67,8 @@ export default function App() {
     const normalizedQuery = query.trim().toLowerCase()
 
     return catalog.filter((product) => {
-      const categoryMatches = activeCategory === 'All' || product.category === activeCategory
+      const categoryMatches =
+        activeCategory === 'Все товары' || product.category === activeCategory
       const queryMatches =
         normalizedQuery.length === 0 ||
         `${product.title} ${product.description} ${product.category}`
@@ -122,7 +123,7 @@ export default function App() {
     const response = await createOrder(cart)
     setCart([])
     setOrderStatus(
-      `Order ${response.orderId} confirmed. ${response.itemsCount} item(s) are ready for delivery.`,
+      `Заказ ${response.orderId} оформлен. Товаров в заказе: ${response.itemsCount}.`,
     )
     setIsSubmittingOrder(false)
   }
@@ -159,25 +160,28 @@ export default function App() {
               <section className="home-grid">
                 <article className="feature-card">
                   <p className="eyebrow">State management</p>
-                  <h3>Cart, theme and filters</h3>
+                  <h3>Корзина, тема и фильтры</h3>
                   <p>
-                    The project uses React state, memoized selectors and localStorage persistence.
+                    В проекте есть React state, мемоизация вычислений и сохранение данных
+                    в localStorage.
                   </p>
                 </article>
 
                 <article className="feature-card">
                   <p className="eyebrow">Async UX</p>
-                  <h3>Loading, submit and checkout flows</h3>
+                  <h3>Загрузка, отправка формы и checkout</h3>
                   <p>
-                    API calls are simulated with dedicated async helpers and clear UI feedback.
+                    API-запросы имитируются через async-хелперы, а интерфейс даёт
+                    понятный feedback.
                   </p>
                 </article>
 
                 <article className="feature-card">
-                  <p className="eyebrow">Component architecture</p>
-                  <h3>Reusable UI blocks</h3>
+                  <p className="eyebrow">Компонентный подход</p>
+                  <h3>Переиспользуемые UI-блоки</h3>
                   <p>
-                    Shared cards, layout and page sections keep the storefront easy to extend.
+                    Layout, карточки и секции вынесены в отдельные компоненты, чтобы
+                    проект было удобно расширять.
                   </p>
                 </article>
               </section>
@@ -190,9 +194,9 @@ export default function App() {
           element={
             <section>
               <SectionTitle
-                eyebrow="Catalog"
-                title="Ready-to-ship frontend products"
-                description="Filter by category, search across the catalog and add items to your cart."
+                eyebrow="Каталог"
+                title="Frontend-продукты и UI-наборы"
+                description="Фильтруй товары по категориям, ищи по названию и добавляй позиции в корзину."
               />
 
               <CategoryFilter
@@ -204,7 +208,7 @@ export default function App() {
               />
 
               {isLoading ? (
-                <div className="state-panel">Loading marketplace products...</div>
+                <div className="state-panel">Загружаем товары маркетплейса...</div>
               ) : filteredProducts.length ? (
                 <div className="products-grid">
                   {filteredProducts.map((product) => (
@@ -217,7 +221,7 @@ export default function App() {
                 </div>
               ) : (
                 <div className="state-panel">
-                  No products found. Try another category or search term.
+                  Ничего не найдено. Попробуй другую категорию или поисковый запрос.
                 </div>
               )}
             </section>
@@ -229,19 +233,19 @@ export default function App() {
           element={
             <section>
               <SectionTitle
-                eyebrow="Cart"
-                title="Review your selected items"
-                description="Update quantities, remove products or complete the checkout simulation."
+                eyebrow="Корзина"
+                title="Твои выбранные товары"
+                description="Меняй количество, удаляй позиции и запускай демо-оформление заказа."
               />
 
               {orderStatus ? <p className="status-banner">{orderStatus}</p> : null}
 
               {!cart.length ? (
                 <div className="state-panel">
-                  Your cart is empty.
+                  Корзина пока пустая.
                   <div className="empty-actions">
                     <Link to="/catalog" className="btn btn-primary">
-                      Explore catalog
+                      Перейти в каталог
                     </Link>
                   </div>
                 </div>
@@ -259,13 +263,13 @@ export default function App() {
                   </div>
 
                   <aside className="checkout-card">
-                    <p className="eyebrow">Summary</p>
+                    <p className="eyebrow">Итого</p>
                     <div className="summary-row">
-                      <span>Items</span>
+                      <span>Товаров</span>
                       <strong>{cartItemsCount}</strong>
                     </div>
                     <div className="summary-row">
-                      <span>Total</span>
+                      <span>Сумма</span>
                       <strong>{cartTotal.toLocaleString('ru-RU')} ₽</strong>
                     </div>
                     <button
@@ -274,7 +278,7 @@ export default function App() {
                       onClick={handleCheckout}
                       disabled={isSubmittingOrder}
                     >
-                      {isSubmittingOrder ? 'Processing...' : 'Checkout'}
+                      {isSubmittingOrder ? 'Оформляем...' : 'Оформить заказ'}
                     </button>
                   </aside>
                 </div>
@@ -288,15 +292,15 @@ export default function App() {
           element={
             <section className="contact-shell">
               <SectionTitle
-                eyebrow="Contact"
-                title="Let's discuss a frontend role"
-                description="Use this form as a portfolio interaction demo. The submit flow is asynchronous and returns a confirmation message."
+                eyebrow="Контакты"
+                title="Давай обсудим frontend-задачи"
+                description="Эта форма показывает демо-отправку сообщения: есть async-сабмит и статус успешной отправки."
               />
 
               <form className="contact-card" onSubmit={handleContactSubmit}>
                 <label>
-                  Name
-                  <input name="name" type="text" placeholder="Your name" required />
+                  Имя
+                  <input name="name" type="text" placeholder="Твоё имя" required />
                 </label>
 
                 <label>
@@ -305,17 +309,17 @@ export default function App() {
                 </label>
 
                 <label>
-                  Message
+                  Сообщение
                   <textarea
                     name="message"
                     rows="5"
-                    placeholder="Tell me about your project or vacancy"
+                    placeholder="Расскажи о проекте, задаче или вакансии"
                     required
                   />
                 </label>
 
                 <button type="submit" className="btn btn-primary btn-full" disabled={isSubmittingContact}>
-                  {isSubmittingContact ? 'Sending...' : 'Send message'}
+                  {isSubmittingContact ? 'Отправляем...' : 'Отправить сообщение'}
                 </button>
 
                 {contactStatus ? <p className="status-banner">{contactStatus}</p> : null}
@@ -328,10 +332,10 @@ export default function App() {
           path="*"
           element={
             <div className="state-panel">
-              This page does not exist.
+              Такой страницы нет.
               <div className="empty-actions">
                 <Link to="/" className="btn btn-primary">
-                  Back home
+                  На главную
                 </Link>
               </div>
             </div>
