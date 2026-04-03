@@ -2,6 +2,10 @@
 
 A compact marketplace demo for a frontend portfolio. The app shows product browsing, category filtering, shopping cart state, theme switching, form handling, routing and persistence in localStorage.
 
+## Live Demo
+
+[https://cherreshenka1.github.io/react-promo-landing/](https://cherreshenka1.github.io/react-promo-landing/)
+
 ## Tech stack
 
 - React 18
