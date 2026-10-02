@@ -123,14 +123,15 @@ export default function App() {
     const response = await createOrder(cart)
     setCart([])
     setOrderStatus(
-      `Заказ ${response.orderId} оформлен. Товаров в заказе: ${response.itemsCount}.`,
+      `Демо-заказ ${response.orderId} сформирован: ${response.itemsCount} товаров. Оплата не проводилась.`,
     )
     setIsSubmittingOrder(false)
   }
 
   const handleContactSubmit = async (event) => {
     event.preventDefault()
-    const formData = new FormData(event.currentTarget)
+    const formElement = event.currentTarget
+    const formData = new FormData(formElement)
 
     setIsSubmittingContact(true)
     const response = await submitContactMessage({
@@ -140,7 +141,7 @@ export default function App() {
     })
 
     setContactStatus(response.message)
-    event.currentTarget.reset()
+    formElement.reset()
     setIsSubmittingContact(false)
   }
 
@@ -159,29 +160,26 @@ export default function App() {
 
               <section className="home-grid">
                 <article className="feature-card">
-                  <p className="eyebrow">State management</p>
-                  <h3>Корзина, тема и фильтры</h3>
+                  <p className="eyebrow">Подборка</p>
+                  <h3>Найдите подходящий набор</h3>
                   <p>
-                    В проекте есть React state, мемоизация вычислений и сохранение данных
-                    в localStorage.
+                    Отфильтруйте каталог по задаче: от лендинга до панели управления. Поиск учитывает название и описание.
                   </p>
                 </article>
 
                 <article className="feature-card">
-                  <p className="eyebrow">Async UX</p>
-                  <h3>Загрузка, отправка формы и checkout</h3>
+                  <p className="eyebrow">Сравнение</p>
+                  <h3>Соберите свой комплект</h3>
                   <p>
-                    API-запросы имитируются через async-хелперы, а интерфейс даёт
-                    понятный feedback.
+                    Добавьте несколько наборов, сравните стоимость и измените количество прямо в корзине.
                   </p>
                 </article>
 
                 <article className="feature-card">
-                  <p className="eyebrow">Компонентный подход</p>
-                  <h3>Переиспользуемые UI-блоки</h3>
+                  <p className="eyebrow">Возвращайтесь</p>
+                  <h3>Выбор останется с вами</h3>
                   <p>
-                    Layout, карточки и секции вынесены в отдельные компоненты, чтобы
-                    проект было удобно расширять.
+                    Корзина сохраняется в этом браузере. Можно вернуться позже и продолжить с того же места.
                   </p>
                 </article>
               </section>
@@ -278,7 +276,7 @@ export default function App() {
                       onClick={handleCheckout}
                       disabled={isSubmittingOrder}
                     >
-                      {isSubmittingOrder ? 'Оформляем...' : 'Оформить заказ'}
+                      {isSubmittingOrder ? 'Оформляем...' : 'Сформировать демо-заказ'}
                     </button>
                   </aside>
                 </div>
@@ -293,8 +291,8 @@ export default function App() {
             <section className="contact-shell">
               <SectionTitle
                 eyebrow="Контакты"
-                title="Давай обсудим frontend-задачи"
-                description="Эта форма показывает демо-отправку сообщения: есть async-сабмит и статус успешной отправки."
+                title="Есть вопрос о наборе?"
+                description="Демонстрационная форма: проверка полей без отправки сообщения. Не вводите настоящие контактные данные."
               />
 
               <form className="contact-card" onSubmit={handleContactSubmit}>

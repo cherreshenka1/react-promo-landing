@@ -716,3 +716,5 @@ textarea {
     justify-self: start;
   }
 }
+
+.hero-panel{padding:38px!important;border-radius:24px!important}.hero-panel h1{font-size:clamp(38px,5vw,66px)!important;line-height:1.06!important;letter-spacing:-.045em}.hero-copy{max-width:680px;line-height:1.7}.feature-card{box-shadow:none}.product-card{box-shadow:none}:focus-visible{outline:3px solid #72a6df;outline-offset:3px}@media(max-width:600px){.hero-panel{padding:24px!important}}

@@ -1,46 +1,36 @@
-# React Store Lab
+# react-promo-landing
 
-A compact marketplace demo for a frontend portfolio. The app shows product browsing, category filtering, shopping cart state, theme switching, form handling, routing and persistence in localStorage.
+Самостоятельный интерактивный проект: каталог и корзина.
 
-## Live Demo
+[Открыть сайт](https://cherreshenka1.github.io/react-promo-landing/) · [Кейс](https://cherreshenka1.github.io/portfolio/projects/react-store-lab/) · [Промпт и критерии доработки](https://github.com/cherreshenka1/portfolio/blob/main/prompts/react-store-lab.md)
 
-[https://cherreshenka1.github.io/react-promo-landing/](https://cherreshenka1.github.io/react-promo-landing/)
+## Сценарий
 
-## Tech stack
+Найти товар, изменить количество, оформить учебный заказ и получить понятный результат.
 
-- React 18
-- React Router
-- Vite
-- CSS custom properties
-- GitHub Pages deployment via `gh-pages`
+Каталог поддерживает поиск и фильтры. Корзина сохраняет выбранные товары и пересчитывает количество и итог. Оформление завершается подтверждением учебного заказа.
 
-## Features
+## Границы
 
-- Product catalog with category filters and search
-- Cart page with quantity controls, order summary and checkout simulation
-- Light and dark themes with localStorage persistence
-- Contact form with async submit simulation
-- Hash-based routing that works on GitHub Pages
-- Responsive UI and animated product cards
+Демонстрационный магазин: без оплаты и отправки товаров.
 
-## Local run
+## Проверить вручную
 
-```bash
-npm install
+1. Найти товар.
+2. Добавить в корзину.
+3. Изменить количество.
+4. Оформить демо-заказ.
+
+Проверены основной сценарий и адаптивная вёрстка при ширине 390 и 1280 px. Это проверка прототипа, а не сертификация готовности к промышленной эксплуатации.
+
+## Разработка
+
+React 18, Vite 5. Node.js 20+.
+
+```sh
+npm ci
 npm run dev
-```
-
-## Production build
-
-```bash
 npm run build
-npm run preview
 ```
 
-## Deploy to GitHub Pages
-
-```bash
-npm run deploy
-```
-
-Then open repository settings on GitHub and set Pages source to the `gh-pages` branch.
+`npm run deploy` собирает приложение и публикует `dist` в ветку `gh-pages` текущего репозитория.

@@ -31,7 +31,7 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
       <main className="page-wrap">{children}</main>
 
       <footer className="site-footer">
-        Собрано на React, React Router и Vite. Это маркетплейс-проект для портфолио.
+        Магазин-концепция цифровых материалов. Оплата и скачивание продуктов не подключены.
       </footer>
     </div>
   )
@@ -40,11 +40,10 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
 export function HeroBanner({ totalProducts, cartCount }) {
   return (
     <section className="hero-panel">
-      <p className="eyebrow">Маркетплейс для портфолио</p>
-      <h1>React Store Lab</h1>
+      <p className="eyebrow">Материалы для ваших интерфейсов</p>
+      <h1>Меньше рутины.<br/>Больше своего.</h1>
       <p className="hero-copy">
-        Мини-маркетплейс, который показывает мои frontend-навыки: переиспользуемые
-        компоненты, async-состояния, роутинг, сохранение данных, адаптив и UI-анимации.
+        Наборы интерфейсов, дизайн-системы и готовые экраны. Найдите основу для следующего проекта и соберите свою подборку.
       </p>
 
       <div className="hero-actions">
@@ -62,12 +61,12 @@ export function HeroBanner({ totalProducts, cartCount }) {
           <dd>{totalProducts}</dd>
         </div>
         <div>
-          <dt>Тема</dt>
-          <dd>Тёмная / светлая</dd>
+          <dt>Формат</dt>
+          <dd>Цифровые наборы</dd>
         </div>
         <div>
-          <dt>Стек</dt>
-          <dd>React 18</dd>
+          <dt>Выбор</dt>
+          <dd>Останется в корзине</dd>
         </div>
       </dl>
     </section>
@@ -147,7 +146,7 @@ export function ProductCard({ product, onAddToCart }) {
 
         <div className="product-meta">
           <strong>{product.price.toLocaleString('ru-RU')} ₽</strong>
-          <span>Рейтинг {product.rating}</span>
+          <span>Цифровой набор</span>
         </div>
 
         <button

@@ -11,7 +11,7 @@ export async function submitContactMessage(payload) {
   await wait(700)
   return {
     success: true,
-    message: `${payload.name}, спасибо! Я скоро отвечу на ${payload.email}.`,
+    message: `${payload.name}, форма заполнена корректно. Это демо: сообщение не отправлялось.`,
   }
 }
 
