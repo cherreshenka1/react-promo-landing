@@ -1,75 +1,78 @@
-export const categories = ['Все товары', 'Frontend-наборы', 'Дизайн-системы', 'Дашборды', 'Mobile UI']
-
+export const categories = ['Все товары', 'Разработка', 'Дизайн']
 export const products = [
   {
-    id: 1,
-    title: 'Design System Starter',
-    category: 'Дизайн-системы',
-    tag: 'Хит продаж',
-    price: 4990,
-    rating: 4.9,
-    accent: ['#8b5cf6', '#6366f1'],
-    icon: 'DS',
-    description:
-      'Токены, кнопки, формы, карточки и layout-компоненты для масштабируемого UI.',
+    "id": 101,
+    "title": "Eloquent JavaScript",
+    "category": "Разработка",
+    "tag": "Dec 04, 2018",
+    "price": 2400,
+    "image": "./photos/book-0.jpg",
+    "source": "https://openlibrary.org/books/OL26832992M/Eloquent_JavaScript",
+    "description": "Marijn Haverbeke",
+    "icon": "К",
+    "accent": [
+      "#ede9df",
+      "#ede9df"
+    ]
   },
   {
-    id: 2,
-    title: 'E-Commerce Dashboard',
-    category: 'Дашборды',
-    tag: 'Аналитика',
-    price: 6490,
-    rating: 4.8,
-    accent: ['#0ea5e9', '#14b8a6'],
-    icon: 'BI',
-    description:
-      'Графики выручки, трекинг заказов, KPI-виджеты и admin-панели для магазина.',
+    "id": 103,
+    "title": "CSS",
+    "category": "Разработка",
+    "tag": "Nov 09, 2017",
+    "price": 2800,
+    "image": "./photos/book-2.jpg",
+    "source": "https://openlibrary.org/books/OL26834162M/CSS",
+    "description": "Eric A. Meyer, Estelle Weyl",
+    "icon": "К",
+    "accent": [
+      "#ede9df",
+      "#ede9df"
+    ]
   },
   {
-    id: 3,
-    title: 'Landing Page Bundle',
-    category: 'Frontend-наборы',
-    tag: 'Запуск',
-    price: 3890,
-    rating: 4.7,
-    accent: ['#f97316', '#ef4444'],
-    icon: 'LP',
-    description: 'Hero-блоки, преимущества, отзывы и CTA-секции для промо-лендингов.',
+    "id": 104,
+    "title": "Refactoring",
+    "category": "Разработка",
+    "tag": "2018",
+    "price": 3500,
+    "image": "./photos/book-3.jpg",
+    "source": "https://openlibrary.org/books/OL26629721M/Refactoring",
+    "description": "Martin Fowler",
+    "icon": "К",
+    "accent": [
+      "#ede9df",
+      "#ede9df"
+    ]
   },
   {
-    id: 4,
-    title: 'Mobile Commerce UI',
-    category: 'Mobile UI',
-    tag: 'Адаптив',
-    price: 4290,
-    rating: 4.8,
-    accent: ['#06b6d4', '#3b82f6'],
-    icon: 'UI',
-    description:
-      'Удобные мобильные карточки товаров, checkout-экраны и адаптивная навигация.',
+    "id": 105,
+    "title": "Clean Code",
+    "category": "Разработка",
+    "tag": "July 2008",
+    "price": 3100,
+    "image": "./photos/book-4.jpg",
+    "source": "https://openlibrary.org/books/OL26222911M/Clean_Code",
+    "description": "Robert C. Martin",
+    "icon": "К",
+    "accent": [
+      "#ede9df",
+      "#ede9df"
+    ]
   },
   {
-    id: 5,
-    title: 'SaaS Components Kit',
-    category: 'Frontend-наборы',
-    tag: 'Новинка',
-    price: 5490,
-    rating: 4.9,
-    accent: ['#22c55e', '#10b981'],
-    icon: 'SK',
-    description:
-      'Pricing-блоки, auth-экраны, страницы настроек и переиспользуемые UI-примитивы.',
-  },
-  {
-    id: 6,
-    title: 'Neo Dashboard Pack',
-    category: 'Дашборды',
-    tag: 'Pro',
-    price: 7190,
-    rating: 5.0,
-    accent: ['#ec4899', '#8b5cf6'],
-    icon: 'ND',
-    description:
-      'Современные аналитические экраны с метриками, лентой событий и quick actions.',
-  },
+    "id": 106,
+    "title": "The Design of Everyday Things",
+    "category": "Дизайн",
+    "tag": "2013",
+    "price": 2200,
+    "image": "./photos/book-5.jpg",
+    "source": "https://openlibrary.org/books/OL25726927M/The_Design_of_Everyday_Things",
+    "description": "Donald A. Norman",
+    "icon": "К",
+    "accent": [
+      "#ede9df",
+      "#ede9df"
+    ]
+  }
 ]

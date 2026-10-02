@@ -5,8 +5,8 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <Link to="/" className="brand-link" aria-label="На главную страницу React Store Lab">
-          React<span>Store</span>Lab
+        <Link to="/" className="brand-link" aria-label="На главную страницу книжного магазина">
+          полка<span>.</span>
         </Link>
 
         <nav className="main-nav" aria-label="Основная навигация">
@@ -22,16 +22,14 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
           <Link to="/cart" className="cart-pill" aria-label={`Открыть корзину, товаров: ${cartCount}`}>
             Корзина <span>{cartCount}</span>
           </Link>
-          <button type="button" className="theme-button" onClick={onToggleTheme}>
-            {theme === 'dark' ? 'Светлая' : 'Тёмная'}
-          </button>
+
         </div>
       </header>
 
       <main className="page-wrap">{children}</main>
 
       <footer className="site-footer">
-        Магазин-концепция цифровых материалов. Оплата и скачивание продуктов не подключены.
+        Учебная витрина. Названия, авторы и обложки — Open Library. Цены условные, оплата не подключена.
       </footer>
     </div>
   )
@@ -40,10 +38,10 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
 export function HeroBanner({ totalProducts, cartCount }) {
   return (
     <section className="hero-panel">
-      <p className="eyebrow">Материалы для ваших интерфейсов</p>
-      <h1>Меньше рутины.<br/>Больше своего.</h1>
+      <p className="eyebrow">Независимая книжная полка</p>
+      <h1>Книги, к которым<br/>возвращаются.</h1>
       <p className="hero-copy">
-        Наборы интерфейсов, дизайн-системы и готовые экраны. Найдите основу для следующего проекта и соберите свою подборку.
+        О коде, дизайне и устройстве привычных вещей. Пять изданий, которые стоит держать рядом с рабочим столом.
       </p>
 
       <div className="hero-actions">
@@ -62,7 +60,7 @@ export function HeroBanner({ totalProducts, cartCount }) {
         </div>
         <div>
           <dt>Формат</dt>
-          <dd>Цифровые наборы</dd>
+          <dd>Бумажные книги</dd>
         </div>
         <div>
           <dt>Выбор</dt>
@@ -105,7 +103,7 @@ export function CategoryFilter({ categories, activeCategory, query, onCategoryCh
           type="search"
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="Поиск по товарам и навыкам"
+          placeholder="Название, автор или тема"
         />
       </label>
     </div>
@@ -129,13 +127,7 @@ export function ProductCard({ product, onAddToCart }) {
 
   return (
     <article className={`product-card ${isAdded ? 'product-card-added' : ''}`}>
-      <div
-        className="product-cover"
-        style={{
-          background: `linear-gradient(135deg, ${product.accent[0]}, ${product.accent[1]})`,
-        }}
-      >
-        <span className="product-icon">{product.icon}</span>
+      <div className="product-cover"><img src={product.image} alt={`Обложка: ${product.title}`} loading="lazy"/>
         <span className="product-tag">{product.tag}</span>
       </div>
 
@@ -146,7 +138,7 @@ export function ProductCard({ product, onAddToCart }) {
 
         <div className="product-meta">
           <strong>{product.price.toLocaleString('ru-RU')} ₽</strong>
-          <span>Цифровой набор</span>
+          <a href={product.source} target="_blank" rel="noreferrer">Об издании ↗</a>
         </div>
 
         <button

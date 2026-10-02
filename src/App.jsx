@@ -1,3 +1,4 @@
+import OpenContext from './OpenContext.jsx'
 import { useEffect, useMemo, useState } from 'react'
 import { Link, Route, Routes } from 'react-router-dom'
 import { createOrder, getProducts, submitContactMessage } from './api.js'
@@ -11,7 +12,7 @@ import {
   SectionTitle,
 } from './ui.jsx'
 
-const CART_KEY = 'react-store-lab-cart'
+const CART_KEY = 'polka-book-cart-v1'
 const THEME_KEY = 'react-store-lab-theme'
 
 function loadStoredCart() {
@@ -158,20 +159,20 @@ export default function App() {
             <>
               <HeroBanner totalProducts={catalog.length} cartCount={cartItemsCount} />
 
-              <section className="home-grid">
+              <section className="product-grid home-books">{catalog.slice(0,3).map(product=><ProductCard key={product.id} product={product} onAddToCart={addToCart}/>)}</section><section className="home-grid">
                 <article className="feature-card">
                   <p className="eyebrow">Подборка</p>
-                  <h3>Найдите подходящий набор</h3>
+                  <h3>Выберите следующую книгу</h3>
                   <p>
-                    Отфильтруйте каталог по задаче: от лендинга до панели управления. Поиск учитывает название и описание.
+                    Практика программирования и дизайн повседневных вещей. Поиск по названию и автору.
                   </p>
                 </article>
 
                 <article className="feature-card">
                   <p className="eyebrow">Сравнение</p>
-                  <h3>Соберите свой комплект</h3>
+                  <h3>Соберите свою библиотеку</h3>
                   <p>
-                    Добавьте несколько наборов, сравните стоимость и измените количество прямо в корзине.
+                    Добавьте несколько книг, сравните стоимость и измените количество прямо в корзине.
                   </p>
                 </article>
 
@@ -193,7 +194,7 @@ export default function App() {
             <section>
               <SectionTitle
                 eyebrow="Каталог"
-                title="Frontend-продукты и UI-наборы"
+                title="Книги о разработке и дизайне"
                 description="Фильтруй товары по категориям, ищи по названию и добавляй позиции в корзину."
               />
 
@@ -291,7 +292,7 @@ export default function App() {
             <section className="contact-shell">
               <SectionTitle
                 eyebrow="Контакты"
-                title="Есть вопрос о наборе?"
+                title="Есть вопрос о книге?"
                 description="Демонстрационная форма: проверка полей без отправки сообщения. Не вводите настоящие контактные данные."
               />
 
@@ -340,6 +341,7 @@ export default function App() {
           }
         />
       </Routes>
+      <OpenContext/>
     </Layout>
   )
 }
