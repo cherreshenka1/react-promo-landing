@@ -35,40 +35,8 @@ export function Layout({ cartCount, theme, onToggleTheme, children }) {
   )
 }
 
-export function HeroBanner({ totalProducts, cartCount }) {
-  return (
-    <section className="hero-panel">
-      <p className="eyebrow">Независимая книжная полка</p>
-      <h1>Книги, к которым<br/>возвращаются.</h1>
-      <p className="hero-copy">
-        О коде, дизайне и устройстве привычных вещей. Пять изданий, которые стоит держать рядом с рабочим столом.
-      </p>
-
-      <div className="hero-actions">
-        <Link to="/catalog" className="btn btn-primary">
-          Смотреть каталог
-        </Link>
-        <Link to="/cart" className="btn btn-secondary">
-          Корзина ({cartCount})
-        </Link>
-      </div>
-
-      <dl className="hero-stats">
-        <div>
-          <dt>Товаров</dt>
-          <dd>{totalProducts}</dd>
-        </div>
-        <div>
-          <dt>Формат</dt>
-          <dd>Бумажные книги</dd>
-        </div>
-        <div>
-          <dt>Выбор</dt>
-          <dd>Останется в корзине</dd>
-        </div>
-      </dl>
-    </section>
-  )
+export function HeroBanner({ totalProducts }) {
+  return <section className="book-feature"><div className="book-intro"><p>Книжный магазин для любопытных</p><h1>Хорошие идеи<br/>живут на полке.</h1><p>Код, дизайн и вещи вокруг нас. Собираем небольшую библиотеку больших идей.</p><Link to="/catalog" className="btn btn-primary">В каталог · {totalProducts} книг ↗</Link></div><div className="cover-installation"><img src="./photos/book-0.jpg" alt="Eloquent JavaScript, Marijn Haverbeke"/><img src="./photos/book-2.jpg" alt="CSS: The Definitive Guide, Eric A. Meyer"/><p>Читать. Пробовать. Возвращаться.</p></div></section>
 }
 
 export function SectionTitle({ eyebrow, title, description }) {

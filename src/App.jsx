@@ -25,7 +25,7 @@ function loadStoredCart() {
 }
 
 function loadStoredTheme() {
-  return localStorage.getItem(THEME_KEY) || 'dark'
+  return localStorage.getItem(THEME_KEY) || 'light'
 }
 
 export default function App() {
@@ -159,31 +159,7 @@ export default function App() {
             <>
               <HeroBanner totalProducts={catalog.length} cartCount={cartItemsCount} />
 
-              <section className="product-grid home-books">{catalog.slice(0,3).map(product=><ProductCard key={product.id} product={product} onAddToCart={addToCart}/>)}</section><section className="home-grid">
-                <article className="feature-card">
-                  <p className="eyebrow">Подборка</p>
-                  <h3>Выберите следующую книгу</h3>
-                  <p>
-                    Практика программирования и дизайн повседневных вещей. Поиск по названию и автору.
-                  </p>
-                </article>
-
-                <article className="feature-card">
-                  <p className="eyebrow">Сравнение</p>
-                  <h3>Соберите свою библиотеку</h3>
-                  <p>
-                    Добавьте несколько книг, сравните стоимость и измените количество прямо в корзине.
-                  </p>
-                </article>
-
-                <article className="feature-card">
-                  <p className="eyebrow">Возвращайтесь</p>
-                  <h3>Выбор останется с вами</h3>
-                  <p>
-                    Корзина сохраняется в этом браузере. Можно вернуться позже и продолжить с того же места.
-                  </p>
-                </article>
-              </section>
+              <div className="shelf-heading"><h2>С чего начать</h2><Link to="/catalog">Все книги ↗</Link></div><section className="home-books">{catalog.slice(0,3).map(product=><ProductCard key={product.id} product={product} onAddToCart={addToCart}/>)}</section><section className="reading-note"><span>О нашей полке</span><p>Не бесконечная лента новинок, а книги, которые помогают разобраться: как устроен код, почему интерфейс удобен и что делает вещь полезной.</p></section>
             </>
           }
         />
@@ -341,7 +317,7 @@ export default function App() {
           }
         />
       </Routes>
-      <OpenContext/>
+      <details className="sources" id="sources"><summary>Источники и сведения об изданиях</summary><OpenContext/></details>
     </Layout>
   )
 }
